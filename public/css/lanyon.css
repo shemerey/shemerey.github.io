@@ -440,6 +440,15 @@ a.pagination-item:hover {
  * Apply custom color schemes by adding the appropriate class to the `body`.
  * Based on colors from Base16: http://chriskempson.github.io/base16/#default.
  */
+ /* Shemerey */
+ .sh-theme .sidebar,
+ .sh-theme .sidebar a,
+ .sh-theme .sidebar-toggle:active,
+ .sh-theme #sidebar-checkbox:checked ~ .sidebar-toggle {
+   background-color: white;
+   color: #313131;
+   /*color: black;*/
+ }
 
 /* Red */
 .theme-base-08 .sidebar,
