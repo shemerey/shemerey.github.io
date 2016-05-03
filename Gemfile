@@ -5,7 +5,6 @@ gem 'jemoji'
 gem 'jekyll-mentions'
 gem 'jekyll-paginate'
 gem 'jekyll-sitemap'
-gem 'jekyll-gh-pages'
 
 group :test, :development do
   gem 'psych'
