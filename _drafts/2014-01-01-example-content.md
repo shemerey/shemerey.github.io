@@ -3,6 +3,14 @@ layout: post
 title: Example content
 ---
 
+{% xdot svg %}  
+digraph {
+  A -> B
+  B -> C
+  A -> C
+  C -> A
+}
+{% endxdot %}
 
 <div class="message">
   Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
