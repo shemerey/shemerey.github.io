@@ -28,8 +28,7 @@ layout: default
 <div id="disqus_thread"></div>
 <script>
 var disqus_config = function () {
-  this.page.url = "{{ page.url }}";
-  this.page.identifier = "{{ page.id }}";
+  this.page.url = "http://shemerey.com{{ page.url }}";
 };
 
 (function() {
@@ -41,3 +40,4 @@ s.setAttribute('data-timestamp', +new Date());
 (d.head || d.body).appendChild(s);
 })();
 </script>
+<script id="dsq-count-scr" src="//shemerey.disqus.com/count.js" async></script>
