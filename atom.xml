@@ -1,28 +1,114 @@
----
-layout: null
----
-
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
- <title>{{ site.title }}</title>
- <link href="{{ site.url }}{{ site.baseurl }}/atom.xml" rel="self"/>
- <link href="{{ site.url }}{{ site.baseurl }}/"/>
- <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>{{ site.url }}</id>
+ <title>shemerey.com</title>
+ <link href="http://shemerey.com/atom.xml" rel="self"/>
+ <link href="http://shemerey.com/"/>
+ <updated>2016-05-04T02:16:19+03:00</updated>
+ <id>http://shemerey.com</id>
  <author>
-   <name>{{ site.author.name }}</name>
-   <email>{{ site.author.email }}</email>
+   <name>Mark Otto</name>
+   <email>markdotto@gmail.com</email>
  </author>
 
- {% for post in site.posts %}
+ 
  <entry>
-   <title>{{ post.title }}</title>
-   <link href="{{ site.url }}{{ post.url }}"/>
-   <updated>{{ post.date | date_to_xmlschema }}</updated>
-   <id>{{ site.url }}{{ site.baseurl }}{{ post.id }}</id>
-   <content type="html">{{ post.content | xml_escape }}</content>
+   <title>Named arguments vs Indexed</title>
+   <link href="http://shemerey.com/2016/05/03/named-arguments-vs-indexed/"/>
+   <updated>2016-05-03T15:47:00+03:00</updated>
+   <id>http://shemerey.com/2016/05/03/named-arguments-vs-indexed</id>
+   <content type="html">&lt;p&gt;There is two ways of using arguments both has pros and cons, I want to emphasize
+that there is no “silver bluet” and you don’t have to choose one or another.  You
+have to know both and use both whenever it appropriate.&lt;/p&gt;
+
+&lt;h2 id=&quot;indexed-arguments&quot;&gt;Indexed arguments&lt;/h2&gt;
+
+&lt;p&gt;Some application, languages, and even syntax contractions force you to use index
+version of arguments, they all well known and don’t worth to mention, but what
+is really interesting that some times we can use it in unexpected places.&lt;/p&gt;
+
+&lt;h3 id=&quot;in-postgres&quot;&gt;in Postgres&lt;/h3&gt;
+
+&lt;p&gt;Each of the arguments you specify in a &lt;code class=&quot;highlighter-rouge&quot;&gt;select&lt;/code&gt; has a 1-based index and you can
+use these indexes in the &lt;code class=&quot;highlighter-rouge&quot;&gt;order by&lt;/code&gt; as well as &lt;code class=&quot;highlighter-rouge&quot;&gt;group by&lt;/code&gt; statements.&lt;/p&gt;
+
+&lt;p&gt;Instead of writing&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updated_at&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;posts&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updated_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;you can write&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updated_at&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;posts&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you want to group by a table’s &lt;code class=&quot;highlighter-rouge&quot;&gt;type&lt;/code&gt; and then order by the counts from
+highest to lowest, you can do the following&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;desc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;in-swift&quot;&gt;in Swift&lt;/h3&gt;
+
+&lt;p&gt;Closure automatically provides shorthand argument names to inline closures,
+which can be used to refer to the values of the arguments by the names $0, $1,
+$2, and so on.&lt;/p&gt;
+
+&lt;p&gt;Instead of writing&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;reversed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;names&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;s1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;s2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s2&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;you can write&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;reversed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;names&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</content>
  </entry>
- {% endfor %}
+ 
+ <entry>
+   <title>$ git stash // for daily usage.</title>
+   <link href="http://shemerey.com/2015/04/25/git-stash/"/>
+   <updated>2015-04-25T00:00:00+03:00</updated>
+   <id>http://shemerey.com/2015/04/25/git-stash</id>
+   <content type="html">&lt;div class=&quot;message&quot;&gt;
+ One of the most awesome features in git is underestimated. &lt;code&gt;git stash&lt;/code&gt; is awesome and you will see why.
+&lt;/div&gt;
+
+&lt;p&gt;Imagine you average day, tons of task, issues, and concerns.
+You have to switch on and off all the time during the day. It’s a bit annoying isn’t it ?&lt;/p&gt;
+
+&lt;p&gt;You spend some time to figure out what’s going on on a project, add some log statements, and &lt;code class=&quot;highlighter-rouge&quot;&gt;binding.pry&lt;/code&gt;.
+Your &lt;code class=&quot;highlighter-rouge&quot;&gt;console.log&lt;/code&gt; is logging pretty much all information what you need, but manager want’s you to take a look on a urgent hotfix.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git stash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Is going to help you, it works fine, but there is even more useful options. Use &lt;code class=&quot;highlighter-rouge&quot;&gt;-u&lt;/code&gt; if you want to stash unstated files too.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git stash -u
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This command is going to clean you project tree to original state and keep all changes as well as new files in safe place.
+Of course  you can restor it any time by hitting &lt;code class=&quot;highlighter-rouge&quot;&gt;git stash apply&lt;/code&gt;, but if know for sure it was an experiment or just one time job, it’s better to use &lt;code class=&quot;highlighter-rouge&quot;&gt;git stash pop&lt;/code&gt;,  pop work as expected and no more work for clean up you stashes required.&lt;/p&gt;
+
+&lt;p&gt;Last but not least things to know, you can use an awesome flag &lt;code class=&quot;highlighter-rouge&quot;&gt;-p&lt;/code&gt; with stashes as you do with &lt;code class=&quot;highlighter-rouge&quot;&gt;git commit&lt;/code&gt;. It works the same, you gonna be asked about any change in the same way.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git stash -p
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</content>
+ </entry>
+ 
 
 </feed>

@@ -11,7 +11,7 @@
 
   <title>
     
-      shemerey.com &middot; My Blog about tech, Web & Mobile development. IoT etc.
+      Named arguments vs Indexed &middot; shemerey.com
     
   </title>
 
@@ -88,18 +88,10 @@
       </div>
 
       <div class="container content">
-        <div class="posts">
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/05/03/named-arguments-vs-indexed/">
-        Named arguments vs Indexed
-      </a>
-    </h1>
-
-    <span class="post-date">03 May 2016</span>
-
-    <p>There is two ways of using arguments both has pros and cons, I want to emphasize
+        <div class="post">
+  <h1 class="post-title">Named arguments vs Indexed</h1>
+  <span class="post-date">03 May 2016</span>
+  <p>There is two ways of using arguments both has pros and cons, I want to emphasize
 that there is no “silver bluet” and you don’t have to choose one or another.  You
 have to know both and use both whenever it appropriate.</p>
 
@@ -154,51 +146,38 @@ $2, and so on.</p>
 </code></pre>
 </div>
 
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2015/04/25/git-stash/">
-        $ git stash // for daily usage.
-      </a>
-    </h1>
-
-    <span class="post-date">25 Apr 2015</span>
-
-    <div class="message">
- One of the most awesome features in git is underestimated. <code>git stash</code> is awesome and you will see why.
 </div>
 
-<p>Imagine you average day, tons of task, issues, and concerns.
-You have to switch on and off all the time during the day. It’s a bit annoying isn’t it ?</p>
-
-<p>You spend some time to figure out what’s going on on a project, add some log statements, and <code class="highlighter-rouge">binding.pry</code>.
-Your <code class="highlighter-rouge">console.log</code> is logging pretty much all information what you need, but manager want’s you to take a look on a urgent hotfix.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git stash
-</code></pre>
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2015/04/25/git-stash/">
+            $ git stash // for daily usage.
+            <small>25 Apr 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
 </div>
+<hr>
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function () {
+    this.page.url = "http://shemerey.com/2016/05/03/named-arguments-vs-indexed/";
+  };
 
-<p>Is going to help you, it works fine, but there is even more useful options. Use <code class="highlighter-rouge">-u</code> if you want to stash unstated files too.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git stash -u
-</code></pre>
-</div>
-
-<p>This command is going to clean you project tree to original state and keep all changes as well as new files in safe place.
-Of course  you can restor it any time by hitting <code class="highlighter-rouge">git stash apply</code>, but if know for sure it was an experiment or just one time job, it’s better to use <code class="highlighter-rouge">git stash pop</code>,  pop work as expected and no more work for clean up you stashes required.</p>
-
-<p>Last but not least things to know, you can use an awesome flag <code class="highlighter-rouge">-p</code> with stashes as you do with <code class="highlighter-rouge">git commit</code>. It works the same, you gonna be asked about any change in the same way.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git stash -p
-</code></pre>
-</div>
-
-  </div>
-  
-</div>
-
-
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//shemerey.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<script id="dsq-count-scr" src="//shemerey.disqus.com/count.js" async></script>
 
       </div>
     </div>
