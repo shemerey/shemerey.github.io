@@ -4,13 +4,117 @@
  <title>shemerey.com</title>
  <link href="http://shemerey.com/atom.xml" rel="self"/>
  <link href="http://shemerey.com/"/>
- <updated>2016-05-04T02:16:19+03:00</updated>
+ <updated>2016-05-09T14:29:58+03:00</updated>
  <id>http://shemerey.com</id>
  <author>
    <name>Mark Otto</name>
    <email>markdotto@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Cron tips & tricks</title>
+   <link href="http://shemerey.com/2016/05/09/cron-tips-tricks/"/>
+   <updated>2016-05-09T14:28:00+03:00</updated>
+   <id>http://shemerey.com/2016/05/09/cron-tips-tricks</id>
+   <content type="html">&lt;p&gt;CronTab is pretty powerful app, but we often don’t pay attention to it, here is some tips i’ve found useful for me.&lt;/p&gt;
+
+&lt;h3 id=&quot;format&quot;&gt;Format&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;  &lt;span class=&quot;nb&quot;&gt;command &lt;/span&gt;to be executed
+┬    ┬    ┬    ┬    ┬
+│    │    │    │    │
+│    │    │    │    │
+│    │    │    │    └───── day of week &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0 - 6&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+│    │    │    └────────── month &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1 - 12&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+│    │    └─────────────── day of month &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1 - 31&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+│    └──────────────────── hour &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0 - 23&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+└───────────────────────── min &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0 - 59&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;some-examples&quot;&gt;Some Examples&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;0 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;     every hour
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;/15 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;  every 15 mins
+0 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;/2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;   every 2 hours
+0 0 0 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 0     every sunday midnight
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;basic-commands&quot;&gt;Basic commands&lt;/h3&gt;
+
+&lt;p&gt;Open in editor
+&lt;code class=&quot;highlighter-rouge&quot;&gt;bash
+$ crontab -e
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;List tasks
+&lt;code class=&quot;highlighter-rouge&quot;&gt;bash
+crontab -l [-u user]
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;cron-tab-checkers&quot;&gt;Cron Tab checkers&lt;/h3&gt;
+
+&lt;p&gt;It’s hard to remember this format, and crontab doesn’t provide a handy way to check your syntax, like &lt;code class=&quot;highlighter-rouge&quot;&gt;nginx&lt;/code&gt; does for instance. But there is plenty of checkers online what you can use.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://crontab.guru/&quot;&gt;http://crontab.guru/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://cron.schlitt.info/&quot;&gt;http://cron.schlitt.info/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://crontab-generator.org/&quot;&gt;http://crontab-generator.org/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;apply-the-principle-of-least-privilege&quot;&gt;Apply the principle of least privilege&lt;/h3&gt;
+
+&lt;p&gt;The sixth column of a system crontab(5) file is the username of the user as which the task should run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-crontab&quot;&gt;0 * * * *  root  cron-task
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To the extent that is practical, you should run the task as a user with only the privileges it needs to run, and nothing else. This can sometimes make it worthwhile to create a dedicated system user purely for running scheduled tasks relevant to your application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-crontab&quot;&gt;0 * * * *  myappcron  cron-task
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is not just for security reasons, although those are good ones; Similarly, for tasks with database systems such as &lt;code class=&quot;highlighter-rouge&quot;&gt;MySQL&lt;/code&gt;, don’t use the administrative root user if you can avoid it; instead, use or even create a dedicated user with a unique random password stored in a locked-down &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.my.cnf&lt;/code&gt; file, with only the needed permissions. For a &lt;code class=&quot;highlighter-rouge&quot;&gt;MySQL&lt;/code&gt; backup task, for example, only a few permissions should be required, including &lt;code class=&quot;highlighter-rouge&quot;&gt;SELECT&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;SHOW VIEW&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;LOCK TABLES&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;customize-your-tasks-properly&quot;&gt;Customize your tasks properly&lt;/h3&gt;
+
+&lt;p&gt;If necessary, you can set arbitrary environment variables for the tasks at the top of the file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-crontab&quot;&gt;MYVAR=myvalue
+
+0 * * * *  you  cron-task-which-use-env-vars
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;send-the-output-somewhere-useful&quot;&gt;Send the output somewhere useful&lt;/h3&gt;
+
+&lt;p&gt;Another common mistake is failing to set a useful MAILTO at the top of the crontab(5) file, as the specified destination for any output and errors from the tasks. cron(8) uses the system mail implementation to send its messages, and typically, default configurations for mail agents will simply send the message to an mbox file in &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/mail/$USER&lt;/code&gt;, that they may not ever read. This defeats much of the point of mailing output and errors.&lt;/p&gt;
+
+&lt;p&gt;This is easily dealt with, though; ensure that you can send a message to an address you actually do check from the server, perhaps using mail(1):&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;printf&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;%s\n&#39;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;Test message&#39;&lt;/span&gt; | mail -s &lt;span class=&quot;s1&quot;&gt;&#39;Test subject&#39;&lt;/span&gt; you@example.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Once you’ve verified that your mail agent is correctly configured and that the mail arrives in your inbox, set the address in a &lt;code class=&quot;highlighter-rouge&quot;&gt;MAILTO&lt;/code&gt; variable at the top of your file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-crontab&quot;&gt;MAILTO=you@example.com
+
+0 * * * *    you  cron-task-1
+*/5 * * * *  you  cron-task-2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you don’t want to use email for routine output, another method that works is sending the output to syslog with a tool like logger(1):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-crontab&quot;&gt;0 * * * *   you  cron-task | logger -it cron-task
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Alternatively, you can configure aliases on your system to forward system mail destined for you on to an address you check. For Postfix, you’d use an aliases(5) file.&lt;/p&gt;
+
+&lt;p&gt;I sometimes use this setup in cases where the task is expected to emit a few lines of output which might be useful for later review, but send stderr output via &lt;code class=&quot;highlighter-rouge&quot;&gt;MAILTO&lt;/code&gt; as normal. If you’d rather not use syslog, perhaps because the output is high in volume and/or frequency, you can always set up a log file &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/log/cron-task.log&lt;/code&gt; … but don’t forget to add a &lt;code class=&quot;highlighter-rouge&quot;&gt;logrotate&lt;/code&gt; for it!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Named arguments vs Indexed</title>
