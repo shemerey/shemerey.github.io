@@ -4,13 +4,66 @@
  <title>shemerey.com</title>
  <link href="http://shemerey.com/atom.xml" rel="self"/>
  <link href="http://shemerey.com/"/>
- <updated>2016-05-09T14:29:58+03:00</updated>
+ <updated>2016-05-10T14:42:07+03:00</updated>
  <id>http://shemerey.com</id>
  <author>
    <name>Mark Otto</name>
    <email>markdotto@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Fix for 'SETTING LOCALE FAILED'</title>
+   <link href="http://shemerey.com/2016/05/10/fix-for-setting-locale-failed/"/>
+   <updated>2016-05-10T14:41:00+03:00</updated>
+   <id>http://shemerey.com/2016/05/10/fix-for-setting-locale-failed</id>
+   <content type="html">&lt;p&gt;I was recently experience some annoying thing. If you choose to install &lt;code class=&quot;highlighter-rouge&quot;&gt;dokku&lt;/code&gt;
+on &lt;code class=&quot;highlighter-rouge&quot;&gt;DigitalOcean&lt;/code&gt; you will probably get something like so:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;,
+	LC_ALL &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;,
+	LC_CTYPE &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;UTF-8&quot;&lt;/span&gt;,
+	LANG &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;en_US.UTF-8&quot;&lt;/span&gt;
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;C&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;It catching eye and drives me nuts. Following instruction can save you some time
+if you have the same.&lt;/p&gt;
+
+&lt;p&gt;You just need update your &lt;code class=&quot;highlighter-rouge&quot;&gt;locale&lt;/code&gt; file&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;LANGUAGE=en_US.UTF-8 &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;LC_ALL=en_US.UTF-8 &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;LANG=en_US.UTF-8 &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;LC_TYPE=en_US.UTF-8&quot;&lt;/span&gt; &amp;gt;&amp;gt; /etc/default/locale
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;and reconfigure it&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo locale-gen en_US.UTF-8
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo dpkg-reconfigure locales
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;As result you gonna see something like this&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dpkg-reconfigure locales
+Generating locales...
+  en_AG.UTF-8... &lt;span class=&quot;k&quot;&gt;done
+  &lt;/span&gt;en_AU.UTF-8... &lt;span class=&quot;k&quot;&gt;done
+  &lt;/span&gt;en_BW.UTF-8... &lt;span class=&quot;k&quot;&gt;done
+  &lt;/span&gt;en_CA.UTF-8... &lt;span class=&quot;k&quot;&gt;done
+  &lt;/span&gt;en_DK.UTF-8... &lt;span class=&quot;k&quot;&gt;done
+  &lt;/span&gt;en_GB.UTF-8... &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+  ....
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Don’t forget to reconnect, this changes will have effect with new session.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Cron tips & tricks</title>

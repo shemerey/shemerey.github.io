@@ -107,6 +107,63 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2016/05/10/fix-for-setting-locale-failed/">
+        Fix for 'SETTING LOCALE FAILED'
+      </a>
+    </h1>
+
+    <span class="post-date">10 May 2016</span>
+
+    <p>I was recently experience some annoying thing. If you choose to install <code class="highlighter-rouge">dokku</code>
+on <code class="highlighter-rouge">DigitalOcean</code> you will probably get something like so:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE <span class="o">=</span> <span class="o">(</span><span class="nb">unset</span><span class="o">)</span>,
+	LC_ALL <span class="o">=</span> <span class="o">(</span><span class="nb">unset</span><span class="o">)</span>,
+	LC_CTYPE <span class="o">=</span> <span class="s2">"UTF-8"</span>,
+	LANG <span class="o">=</span> <span class="s2">"en_US.UTF-8"</span>
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale <span class="o">(</span><span class="s2">"C"</span><span class="o">)</span>.
+</code></pre>
+</div>
+
+<p>It catching eye and drives me nuts. Following instruction can save you some time
+if you have the same.</p>
+
+<p>You just need update your <code class="highlighter-rouge">locale</code> file</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo <span class="nb">echo</span>  <span class="s2">"LANGUAGE=en_US.UTF-8 </span><span class="se">\n</span><span class="s2">LC_ALL=en_US.UTF-8 </span><span class="se">\n</span><span class="s2">LANG=en_US.UTF-8 </span><span class="se">\n</span><span class="s2">LC_TYPE=en_US.UTF-8"</span> &gt;&gt; /etc/default/locale
+</code></pre>
+</div>
+
+<p>and reconfigure it</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo locale-gen en_US.UTF-8
+<span class="gp">$ </span>sudo dpkg-reconfigure locales
+</code></pre>
+</div>
+
+<p>As result you gonna see something like this</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>dpkg-reconfigure locales
+Generating locales...
+  en_AG.UTF-8... <span class="k">done
+  </span>en_AU.UTF-8... <span class="k">done
+  </span>en_BW.UTF-8... <span class="k">done
+  </span>en_CA.UTF-8... <span class="k">done
+  </span>en_DK.UTF-8... <span class="k">done
+  </span>en_GB.UTF-8... <span class="k">done</span>
+  ....
+</code></pre>
+</div>
+
+<p>Don’t forget to reconnect, this changes will have effect with new session.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2016/05/09/cron-tips-tricks/">
         Cron tips & tricks
       </a>

@@ -11,7 +11,7 @@
 
   <title>
     
-      Named arguments vs Indexed &middot; shemerey.com
+      Fix for 'SETTING LOCALE FAILED' &middot; shemerey.com
     
   </title>
 
@@ -104,62 +104,53 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">Named arguments vs Indexed</h1>
-  <span class="post-date">03 May 2016</span>
-  <p>There is two ways of using arguments both has pros and cons, I want to emphasize
-that there is no “silver bluet” and you don’t have to choose one or another.  You
-have to know both and use both whenever it appropriate.</p>
+  <h1 class="post-title">Fix for 'SETTING LOCALE FAILED'</h1>
+  <span class="post-date">10 May 2016</span>
+  <p>I was recently experience some annoying thing. If you choose to install <code class="highlighter-rouge">dokku</code>
+on <code class="highlighter-rouge">DigitalOcean</code> you will probably get something like so:</p>
 
-<h2 id="indexed-arguments">Indexed arguments</h2>
-
-<p>Some application, languages, and even syntax contractions force you to use index
-version of arguments, they all well known and don’t worth to mention, but what
-is really interesting that some times we can use it in unexpected places.</p>
-
-<h3 id="in-postgres">in Postgres</h3>
-
-<p>Each of the arguments you specify in a <code class="highlighter-rouge">select</code> has a 1-based index and you can
-use these indexes in the <code class="highlighter-rouge">order by</code> as well as <code class="highlighter-rouge">group by</code> statements.</p>
-
-<p>Instead of writing</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">select</span> <span class="n">id</span><span class="p">,</span> <span class="n">updated_at</span> <span class="k">from</span> <span class="n">posts</span> <span class="k">order</span> <span class="k">by</span> <span class="n">updated_at</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE <span class="o">=</span> <span class="o">(</span><span class="nb">unset</span><span class="o">)</span>,
+	LC_ALL <span class="o">=</span> <span class="o">(</span><span class="nb">unset</span><span class="o">)</span>,
+	LC_CTYPE <span class="o">=</span> <span class="s2">"UTF-8"</span>,
+	LANG <span class="o">=</span> <span class="s2">"en_US.UTF-8"</span>
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale <span class="o">(</span><span class="s2">"C"</span><span class="o">)</span>.
 </code></pre>
 </div>
 
-<p>you can write</p>
+<p>It catching eye and drives me nuts. Following instruction can save you some time
+if you have the same.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">select</span> <span class="n">id</span><span class="p">,</span> <span class="n">updated_at</span> <span class="k">from</span> <span class="n">posts</span> <span class="k">order</span> <span class="k">by</span> <span class="mi">2</span><span class="p">;</span>
+<p>You just need update your <code class="highlighter-rouge">locale</code> file</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo <span class="nb">echo</span>  <span class="s2">"LANGUAGE=en_US.UTF-8 </span><span class="se">\n</span><span class="s2">LC_ALL=en_US.UTF-8 </span><span class="se">\n</span><span class="s2">LANG=en_US.UTF-8 </span><span class="se">\n</span><span class="s2">LC_TYPE=en_US.UTF-8"</span> &gt;&gt; /etc/default/locale
 </code></pre>
 </div>
 
-<p>If you want to group by a table’s <code class="highlighter-rouge">type</code> and then order by the counts from
-highest to lowest, you can do the following</p>
+<p>and reconfigure it</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">select</span> <span class="k">type</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">from</span> <span class="n">transaction</span> <span class="k">group</span> <span class="k">by</span> <span class="mi">1</span> <span class="k">order</span> <span class="k">by</span> <span class="mi">2</span> <span class="k">desc</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo locale-gen en_US.UTF-8
+<span class="gp">$ </span>sudo dpkg-reconfigure locales
 </code></pre>
 </div>
 
-<h3 id="in-swift">in Swift</h3>
+<p>As result you gonna see something like this</p>
 
-<p>Closure automatically provides shorthand argument names to inline closures,
-which can be used to refer to the values of the arguments by the names $0, $1,
-$2, and so on.</p>
-
-<p>Instead of writing</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">reversed</span> <span class="o">=</span> <span class="n">names</span><span class="o">.</span><span class="nf">sort</span><span class="p">({</span>
-    <span class="p">(</span><span class="nv">s1</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">s2</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="k">in</span>
-    <span class="k">return</span> <span class="n">s1</span> <span class="o">&gt;</span> <span class="n">s2</span>
-  <span class="p">})</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>dpkg-reconfigure locales
+Generating locales...
+  en_AG.UTF-8... <span class="k">done
+  </span>en_AU.UTF-8... <span class="k">done
+  </span>en_BW.UTF-8... <span class="k">done
+  </span>en_CA.UTF-8... <span class="k">done
+  </span>en_DK.UTF-8... <span class="k">done
+  </span>en_GB.UTF-8... <span class="k">done</span>
+  ....
 </code></pre>
 </div>
 
-<p>you can write</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">reversed</span> <span class="o">=</span> <span class="n">names</span><span class="o">.</span><span class="nf">sort</span><span class="p">(</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">&gt;</span> <span class="nv">$1</span> <span class="p">}</span> <span class="p">)</span>
-</code></pre>
-</div>
+<p>Don’t forget to reconnect, this changes will have effect with new session.</p>
 
 </div>
 
@@ -169,18 +160,18 @@ $2, and so on.</p>
     
       <li>
         <h3>
-          <a href="/2016/05/10/fix-for-setting-locale-failed/">
-            Fix for 'SETTING LOCALE FAILED'
-            <small>10 May 2016</small>
+          <a href="/2016/05/09/cron-tips-tricks/">
+            Cron tips & tricks
+            <small>09 May 2016</small>
           </a>
         </h3>
       </li>
     
       <li>
         <h3>
-          <a href="/2016/05/09/cron-tips-tricks/">
-            Cron tips & tricks
-            <small>09 May 2016</small>
+          <a href="/2016/05/03/named-arguments-vs-indexed/">
+            Named arguments vs Indexed
+            <small>03 May 2016</small>
           </a>
         </h3>
       </li>
@@ -200,7 +191,7 @@ $2, and so on.</p>
 <div id="disqus_thread"></div>
 <script>
   var disqus_config = function () {
-    this.page.url = "http://shemerey.com/2016/05/03/named-arguments-vs-indexed/";
+    this.page.url = "http://shemerey.com/2016/05/10/fix-for-setting-locale-failed/";
   };
 
   (function() {
