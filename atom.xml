@@ -4,13 +4,43 @@
  <title>shemerey.com</title>
  <link href="http://shemerey.com/atom.xml" rel="self"/>
  <link href="http://shemerey.com/"/>
- <updated>2016-05-10T14:42:07+03:00</updated>
+ <updated>2016-05-12T10:19:41+03:00</updated>
  <id>http://shemerey.com</id>
  <author>
    <name>Mark Otto</name>
    <email>markdotto@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Docker clean up</title>
+   <link href="http://shemerey.com/2016/05/12/docker-clean-up/"/>
+   <updated>2016-05-12T10:18:00+03:00</updated>
+   <id>http://shemerey.com/2016/05/12/docker-clean-up</id>
+   <content type="html">&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Warning: This will destroy all your images and containers. It will not be possible to restore them!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Problem: You use Docker, but working with it created lots of images and
+containers. You want to remove all of them to save disk space. Some times I go
+deep in cowboy style development where all I want to do is do things fast. After
+this jam session I usually find my place ruined with tons of images and
+containers. It’s nice to start all things from scratch, and what you can do if
+you want to.&lt;/p&gt;
+
+&lt;p&gt;You can easily remove all images and containers by executing following lines.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Delete all containers&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker rm &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;docker ps -a -q&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Delete all images&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker rmi &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;docker images -q&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Fix for 'SETTING LOCALE FAILED'</title>

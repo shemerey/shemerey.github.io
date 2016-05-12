@@ -107,6 +107,40 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2016/05/12/docker-clean-up/">
+        Docker clean up
+      </a>
+    </h1>
+
+    <span class="post-date">12 May 2016</span>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>Warning: This will destroy all your images and containers. It will not be possible to restore them!
+</code></pre>
+</div>
+
+<p>Problem: You use Docker, but working with it created lots of images and
+containers. You want to remove all of them to save disk space. Some times I go
+deep in cowboy style development where all I want to do is do things fast. After
+this jam session I usually find my place ruined with tons of images and
+containers. It’s nice to start all things from scratch, and what you can do if
+you want to.</p>
+
+<p>You can easily remove all images and containers by executing following lines.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Delete all containers</span>
+<span class="gp">$ </span>docker rm <span class="k">$(</span>docker ps -a -q<span class="k">)</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Delete all images</span>
+<span class="gp">$ </span>docker rmi <span class="k">$(</span>docker images -q<span class="k">)</span>
+</code></pre>
+</div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2016/05/10/fix-for-setting-locale-failed/">
         Fix for 'SETTING LOCALE FAILED'
       </a>
