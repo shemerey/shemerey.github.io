@@ -80,6 +80,10 @@
     
       
     
+      
+        
+      
+    
   </nav>
 
   <div class="sidebar-item">
@@ -125,8 +129,13 @@ if you have the same.</p>
 
 <p>You just need update your <code class="highlighter-rouge">locale</code> file</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo <span class="nb">echo</span>  <span class="s2">"LANGUAGE=en_US.UTF-8 </span><span class="se">\n</span><span class="s2">LC_ALL=en_US.UTF-8 </span><span class="se">\n</span><span class="s2">LANG=en_US.UTF-8 </span><span class="se">\n</span><span class="s2">LC_TYPE=en_US.UTF-8"</span> &gt;&gt; /etc/default/locale
-</code></pre>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo cat &gt; /etc/default/locale <span class="sh">&lt;&lt;'EOT'
+LANGUAGE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+LANG=en_US.UTF-8
+LC_TYPE=en_US.UTF-8
+EOT
+</span></code></pre>
 </div>
 
 <p>and reconfigure it</p>
@@ -160,6 +169,15 @@ Generating locales...
     
       <li>
         <h3>
+          <a href="/2016/05/30/my-redux-experience/">
+            My Redux Experience 
+            <small>30 May 2016</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
           <a href="/2016/05/12/docker-clean-up/">
             Docker clean up
             <small>12 May 2016</small>
@@ -172,15 +190,6 @@ Generating locales...
           <a href="/2016/05/09/cron-tips-tricks/">
             Cron tips & tricks
             <small>09 May 2016</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/2016/05/03/named-arguments-vs-indexed/">
-            Named arguments vs Indexed
-            <small>03 May 2016</small>
           </a>
         </h3>
       </li>

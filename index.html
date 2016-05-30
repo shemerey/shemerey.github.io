@@ -80,6 +80,10 @@
     
       
     
+      
+        
+      
+    
   </nav>
 
   <div class="sidebar-item">
@@ -104,6 +108,31 @@
 
       <div class="container content">
         <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/05/30/my-redux-experience/">
+        My Redux Experience 
+      </a>
+    </h1>
+
+    <span class="post-date">30 May 2016</span>
+
+    <p>It’s hard to find root of truth sometimes, especially when you have to much hype
+about it.  I’ve usually start from <code class="highlighter-rouge">awesome-*</code> one. This time when I decide to
+take a look on <code class="highlighter-rouge">Redux</code> m journey was pretty much the same. Go to <code class="highlighter-rouge">Github</code>,  and
+search for <a href="https://github.com/xgrommx/awesome-redux">Redux Awesome</a>. It leads
+me to huge list of Article, Videos etc. To much information some times even
+worth then lack of it.</p>
+
+<p>So my way to get into this is find some kind of step by step introduction.
+I’ve just find a good one and I hope you will find it useful too.</p>
+
+<ul>
+  <li>https://github.com/happypoulp/redux-tutorial</li>
+</ul>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -167,8 +196,13 @@ if you have the same.</p>
 
 <p>You just need update your <code class="highlighter-rouge">locale</code> file</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo <span class="nb">echo</span>  <span class="s2">"LANGUAGE=en_US.UTF-8 </span><span class="se">\n</span><span class="s2">LC_ALL=en_US.UTF-8 </span><span class="se">\n</span><span class="s2">LANG=en_US.UTF-8 </span><span class="se">\n</span><span class="s2">LC_TYPE=en_US.UTF-8"</span> &gt;&gt; /etc/default/locale
-</code></pre>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo cat &gt; /etc/default/locale <span class="sh">&lt;&lt;'EOT'
+LANGUAGE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+LANG=en_US.UTF-8
+LC_TYPE=en_US.UTF-8
+EOT
+</span></code></pre>
 </div>
 
 <p>and reconfigure it</p>
@@ -370,48 +404,17 @@ $2, and so on.</p>
 
   </div>
   
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2015/04/25/git-stash/">
-        $ git stash // for daily usage.
-      </a>
-    </h1>
-
-    <span class="post-date">25 Apr 2015</span>
-
-    <div class="message">
- One of the most awesome features in git is underestimated. <code>git stash</code> is awesome and you will see why.
 </div>
 
-<p>Imagine you average day, tons of task, issues, and concerns.
-You have to switch on and off all the time during the day. It’s a bit annoying isn’t it ?</p>
 
-<p>You spend some time to figure out what’s going on on a project, add some log statements, and <code class="highlighter-rouge">binding.pry</code>.
-Your <code class="highlighter-rouge">console.log</code> is logging pretty much all information what you need, but manager want’s you to take a look on a urgent hotfix.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git stash
-</code></pre>
-</div>
-
-<p>Is going to help you, it works fine, but there is even more useful options. Use <code class="highlighter-rouge">-u</code> if you want to stash unstated files too.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git stash -u
-</code></pre>
-</div>
-
-<p>This command is going to clean you project tree to original state and keep all changes as well as new files in safe place.
-Of course  you can restor it any time by hitting <code class="highlighter-rouge">git stash apply</code>, but if know for sure it was an experiment or just one time job, it’s better to use <code class="highlighter-rouge">git stash pop</code>,  pop work as expected and no more work for clean up you stashes required.</p>
-
-<p>Last but not least things to know, you can use an awesome flag <code class="highlighter-rouge">-p</code> with stashes as you do with <code class="highlighter-rouge">git commit</code>. It works the same, you gonna be asked about any change in the same way.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git stash -p
-</code></pre>
-</div>
-
+  <div class="pagination">
+    
+      <a class="pagination-item older" href="/page2">Older</a>
+    
+    
+      <span class="pagination-item newer">Newer</span>
+    
   </div>
-  
-</div>
-
 
 
       </div>

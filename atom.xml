@@ -4,13 +4,34 @@
  <title>shemerey.com</title>
  <link href="http://shemerey.com/atom.xml" rel="self"/>
  <link href="http://shemerey.com/"/>
- <updated>2016-05-12T10:19:41+03:00</updated>
+ <updated>2016-05-30T17:06:01+03:00</updated>
  <id>http://shemerey.com</id>
  <author>
    <name>Mark Otto</name>
    <email>markdotto@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>My Redux Experience </title>
+   <link href="http://shemerey.com/2016/05/30/my-redux-experience/"/>
+   <updated>2016-05-30T17:05:00+03:00</updated>
+   <id>http://shemerey.com/2016/05/30/my-redux-experience</id>
+   <content type="html">&lt;p&gt;It’s hard to find root of truth sometimes, especially when you have to much hype
+about it.  I’ve usually start from &lt;code class=&quot;highlighter-rouge&quot;&gt;awesome-*&lt;/code&gt; one. This time when I decide to
+take a look on &lt;code class=&quot;highlighter-rouge&quot;&gt;Redux&lt;/code&gt; m journey was pretty much the same. Go to &lt;code class=&quot;highlighter-rouge&quot;&gt;Github&lt;/code&gt;,  and
+search for &lt;a href=&quot;https://github.com/xgrommx/awesome-redux&quot;&gt;Redux Awesome&lt;/a&gt;. It leads
+me to huge list of Article, Videos etc. To much information some times even
+worth then lack of it.&lt;/p&gt;
+
+&lt;p&gt;So my way to get into this is find some kind of step by step introduction.
+I’ve just find a good one and I hope you will find it useful too.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;https://github.com/happypoulp/redux-tutorial&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Docker clean up</title>
@@ -66,8 +87,13 @@ if you have the same.&lt;/p&gt;
 
 &lt;p&gt;You just need update your &lt;code class=&quot;highlighter-rouge&quot;&gt;locale&lt;/code&gt; file&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;LANGUAGE=en_US.UTF-8 &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;LC_ALL=en_US.UTF-8 &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;LANG=en_US.UTF-8 &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;LC_TYPE=en_US.UTF-8&quot;&lt;/span&gt; &amp;gt;&amp;gt; /etc/default/locale
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo cat &amp;gt; /etc/default/locale &lt;span class=&quot;sh&quot;&gt;&amp;lt;&amp;lt;&#39;EOT&#39;
+LANGUAGE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+LANG=en_US.UTF-8
+LC_TYPE=en_US.UTF-8
+EOT
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;and reconfigure it&lt;/p&gt;

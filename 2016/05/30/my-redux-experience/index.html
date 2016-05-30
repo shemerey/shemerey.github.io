@@ -11,7 +11,7 @@
 
   <title>
     
-      Docker clean up &middot; shemerey.com
+      My Redux Experience  &middot; shemerey.com
     
   </title>
 
@@ -108,30 +108,21 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">Docker clean up</h1>
-  <span class="post-date">12 May 2016</span>
-  <div class="highlighter-rouge"><pre class="highlight"><code>Warning: This will destroy all your images and containers. It will not be possible to restore them!
-</code></pre>
-</div>
+  <h1 class="post-title">My Redux Experience </h1>
+  <span class="post-date">30 May 2016</span>
+  <p>It’s hard to find root of truth sometimes, especially when you have to much hype
+about it.  I’ve usually start from <code class="highlighter-rouge">awesome-*</code> one. This time when I decide to
+take a look on <code class="highlighter-rouge">Redux</code> m journey was pretty much the same. Go to <code class="highlighter-rouge">Github</code>,  and
+search for <a href="https://github.com/xgrommx/awesome-redux">Redux Awesome</a>. It leads
+me to huge list of Article, Videos etc. To much information some times even
+worth then lack of it.</p>
 
-<p>Problem: You use Docker, but working with it created lots of images and
-containers. You want to remove all of them to save disk space. Some times I go
-deep in cowboy style development where all I want to do is do things fast. After
-this jam session I usually find my place ruined with tons of images and
-containers. It’s nice to start all things from scratch, and what you can do if
-you want to.</p>
+<p>So my way to get into this is find some kind of step by step introduction.
+I’ve just find a good one and I hope you will find it useful too.</p>
 
-<p>You can easily remove all images and containers by executing following lines.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Delete all containers</span>
-<span class="gp">$ </span>docker rm <span class="k">$(</span>docker ps -a -q<span class="k">)</span>
-</code></pre>
-</div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Delete all images</span>
-<span class="gp">$ </span>docker rmi <span class="k">$(</span>docker images -q<span class="k">)</span>
-</code></pre>
-</div>
+<ul>
+  <li>https://github.com/happypoulp/redux-tutorial</li>
+</ul>
 
 </div>
 
@@ -141,9 +132,9 @@ you want to.</p>
     
       <li>
         <h3>
-          <a href="/2016/05/30/my-redux-experience/">
-            My Redux Experience 
-            <small>30 May 2016</small>
+          <a href="/2016/05/12/docker-clean-up/">
+            Docker clean up
+            <small>12 May 2016</small>
           </a>
         </h3>
       </li>
@@ -172,7 +163,7 @@ you want to.</p>
 <div id="disqus_thread"></div>
 <script>
   var disqus_config = function () {
-    this.page.url = "http://shemerey.com/2016/05/12/docker-clean-up/";
+    this.page.url = "http://shemerey.com/2016/05/30/my-redux-experience/";
   };
 
   (function() {
